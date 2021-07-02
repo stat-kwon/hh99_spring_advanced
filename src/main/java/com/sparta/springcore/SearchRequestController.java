@@ -12,7 +12,7 @@ public class SearchRequestController {
 
     private final NaverShopSearch naverShopSearch;
 
-    @Autowired
+    @Autowired           // DI 파트라서 추후에 알게되지 않을까? 생각함
     public SearchRequestController(NaverShopSearch naverShopSearch) {
         this.naverShopSearch = naverShopSearch;
     }
