@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
 @RestController // JSON으로 응답함을 선언합니다.
 public class SearchRequestController {
 
     private final NaverShopSearch naverShopSearch;
 
-    @Autowired           // DI 파트라서 추후에 알게되지 않을까? 생각함
+    @Autowired           // 의존성 주입 중 하나, 기다리자
     public SearchRequestController(NaverShopSearch naverShopSearch) {
         this.naverShopSearch = naverShopSearch;
     }

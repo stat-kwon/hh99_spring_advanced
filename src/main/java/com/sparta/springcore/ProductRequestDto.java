@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
+// ㅇㅈㅇㅈ
 @Getter
 public class ProductRequestDto {
     // 관심상품명
@@ -17,6 +18,7 @@ public class ProductRequestDto {
     // 관심상품의 최저가
     private int lprice;
 }
+
 
 // Dto는 값을 인자로 받아 생성하게 되서 기본생성자만 필요할거 같은데
 // 1. 기본생성자 생략가능한데 @NoArgsConstructor ??
