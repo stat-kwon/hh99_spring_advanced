@@ -1,4 +1,4 @@
-package com.sparta.springcore;
+package com.sparta.springcore.repository;
 
 import lombok.Getter;
 import lombok.Setter;
