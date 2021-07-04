@@ -10,22 +10,27 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
+        http.csrf().disable();                     // 해커로 부터 방어
+        http.headers().frameOptions().disable();   //
 
-        // 로그인 기능 상세 설정을 해주는 것것 
-       http.authorizeRequests()
-                .anyRequest().authenticated()                // 어떠한 요청이 오든지 로그인이 필요하다.
-
+        // 로그인 기능 상세 설정을 해주는 것것 ( 접근 권한을 설정해 주는 것 )
+        http.authorizeRequests()
+                // image 폴더를 login 없이 허용
+                .antMatchers("/images/**").permitAll()
+                // css 폴더를 login 없이 허용
+                .antMatchers("/css/**").permitAll()
+                .antMatchers("/user/**").permitAll()  // user로 시작되는 부분은 인증과정 없이 처리가 되도록 하는 것
+                .antMatchers("/h2-console/**").permitAll()  // user로 시작되는 부분은 인증과정 없이 처리가 되도록 하는 것
+                // 그 외 모든 요청은 인증과정 필요
+                .anyRequest().authenticated()
                 .and()
-
-                .formLogin()         // 하지만 로그인 페이지에 대해서는 permitAll을 해줘야하고 로그인이 완료되었을 때 이동할 위치도 알려줌
-                .defaultSuccessUrl("/")
+                .formLogin()
+                .loginPage("/user/login")                // 로그인 페이지 호출을 설정
+                .loginProcessingUrl("/user/login")       // 실제 로그인을 진행
+                .defaultSuccessUrl("/")                  // 로그인 생성시 보여줄 페이지
                 .permitAll()
-
                 .and()
-
-                .logout()   //로그아웃 기능도 permitAll로 해줌
+                .logout()
                 .permitAll();
     }
 }
