@@ -44,6 +44,9 @@ public class Product extends Timestamped {
     }
 
     public void updateMyPrice(int myPrice) {
+
         this.myprice = myPrice;
     }
 }
+
+/// git test
